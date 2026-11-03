@@ -2,9 +2,30 @@
 
 The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest session first.
 
-**Status:** The full site is implemented from the Claude Design project. It builds as a static export (20 routes) and typecheck and lint are clean. It is waiting on client content decisions and real imagery.
+**Status:** The full site is implemented from the Claude Design project and pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). It builds as a static export (20 routes) and typecheck and lint are clean. It is waiting on client content decisions, real imagery and a hosting choice.
 
 ## Sessions
+
+### 2026-11-03: Merge, push and repo housekeeping
+**Done**
+- Fast-forward merged `feat/site-from-design` into `main` (`6a9189e`) and deleted the branch.
+- Pushed `main` to `origin` (github.com/ayashhossain555/emec-landing-site). Local and remote match at `a65eb3c`.
+- Added `.gitattributes`: LF line endings everywhere (stops the CRLF warnings on Windows), and `package-lock.json` marked `-diff linguist-generated` so it collapses in diffs and PRs.
+- Confirmed git is clean: `node_modules/`, `.next/` and `out/` are ignored, and `PROGRESS.md`, `CLAUDE.md` and `.claude/` are tracked. Untracked files shown in the editor were a stale Source Control view, and refreshing fixes it.
+
+**Decisions**
+- `package-lock.json` stays committed, because it pins exact dependency versions for reproducible installs and builds. `.gitattributes` handles the diff noise instead of ignoring the file.
+
+**Next up**
+- [ ] Choose hosting now that the repo is on GitHub (Vercel, Netlify or GitHub Pages can deploy `out/` directly), plus the domain (`site.url` = `https://emecbd.com`)
+- [ ] Resolve the open content questions (listed in the entry below) with EMEC, then update `src/content/*`
+- [ ] Replace the `.placeholder` blocks with real photos (hero/field, project sites, team portraits, map embed)
+- [ ] Add approved client logo files to `public/clients/` and set `logo` in `people.ts`
+- [ ] Choose a contact-form backend (Formspree, Web3Forms or a serverless function) and wire it into `ContactForm`
+- [ ] Consider case studies drawn from `knowledge/`: GIZ CONNECT household survey, BRAC RISE drone mapping, PCKK flood detection
+
+**Open questions**
+- The six content conflicts in the entry below (countries, contact emails, project count, CEO title, "40 years", company name) are all still open.
 
 ### 2026-11-03: Design import, site build, knowledge base
 **Done**
