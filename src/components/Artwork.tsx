@@ -178,6 +178,46 @@ const MOTIFS: Record<Motif, Draw> = {
     );
   },
 
+  coast: ({ seed }) => {
+    // Land top-left, sea bottom-right, a mangrove fringe along the shore and
+    // household panel markers inland; a small island offshore.
+    const shore = (x: number) => 150 - 0.42 * x + 14 * Math.sin(x / 38 + seed);
+    const xs = Array.from({ length: 23 }, (_, i) => -20 + i * 20);
+    const shoreD = xs.map((x, i) => `${i ? "L" : "M"}${x} ${r1(shore(x))}`).join(" ");
+    const mangroves = [10, 42, 74, 106, 138, 170, 202, 234, 266].map((x, i) => [x, shore(x) - 6 + (i % 2) * 5] as const);
+    const homes: [number, number][] = [[34, 40], [92, 28], [60, 92], [150, 44], [210, 20], [118, 76]];
+    return (
+      <>
+        <Contours cx={60} cy={30} seed={seed} rings={8} step={20} />
+        <path d={`${shoreD} L 420 270 L -20 270 Z`} className={styles.waterFill} />
+        <path d={shoreD} className={styles.inkBold} />
+        {[24, 48].map((dy) => (
+          <path key={dy} d={xs.map((x, i) => `${i ? "L" : "M"}${x} ${r1(shore(x) + dy + 4 * Math.sin(x / 12))}`).join(" ")} className={styles.waterLine} />
+        ))}
+        {mangroves.map(([x, y], i) => (
+          <g key={i}>
+            <path d={`M${x - 7} ${y + 12} Q ${x - 4} ${y + 2} ${x} ${y} Q ${x + 4} ${y + 2} ${x + 7} ${y + 12} M ${x} ${y} L ${x} ${y + 12}`} className={styles.ink} />
+            <circle cx={x} cy={y - 6} r={9} className={styles.leaf} />
+            <circle cx={x} cy={y - 6} r={4} className={styles.leafCore} />
+          </g>
+        ))}
+        <ellipse cx={330} cy={200} rx={34} ry={14} className={styles.soft} />
+        <ellipse cx={330} cy={200} rx={34} ry={14} className={styles.ink} />
+        <circle cx={322} cy={196} r={6} className={styles.leaf} />
+        <circle cx={340} cy={202} r={5} className={styles.leaf} />
+        {homes.map(([x, y], i) => (
+          <g key={i}>
+            <path d={`M${x - 7} ${y} L ${x} ${y - 7} L ${x + 7} ${y} L ${x + 7} ${y + 8} L ${x - 7} ${y + 8} Z`} className={i === 3 ? styles.accentFill : styles.inkFill} />
+            <rect x={x - 12} y={y - 12} width={24} height={24} className={styles.ink} strokeDasharray="2 3" />
+          </g>
+        ))}
+        <Label x={164} y={40}>HH-0412</Label>
+        <Label x={196} y={shore(196) + 22}>MANGROVE</Label>
+        <Label x={300} y={232}>ISLAND</Label>
+      </>
+    );
+  },
+
   field: ({ seed }) => {
     const rows = [50, 80, 110, 140, 170];
     const path = rows.map((y, i) => (i % 2 ? `L 340 ${y} L 60 ${y}` : `L 60 ${y} L 340 ${y}`)).join(" ").replace(/^L/, "M");

@@ -76,20 +76,24 @@ export const digitalCaseStudies: DigitalCaseStudy[] = [
     location: "Cloud processing service",
     country: "Japan",
     shot: "diagram — SAR flood map output",
-    summary: "A lightweight API service that ingests pre- and post-event Sentinel-1 SLC data, runs the full SAR preprocessing chain and ML prediction, and returns geocoded flood outputs on request.",
-    tech: ["FastAPI", "SNAP", "ML", "Containers"],
+    summary: "An on-demand API service that runs the full Sentinel-1 SAR preprocessing chain and ML flood prediction, now being extended into a web application that maps flood extent and estimated damage.",
+    tech: ["FastAPI", "SNAP", "ML", "Docker", "Web GIS"],
     facts: [
       { k: "Client", v: "PCKK, Japan" },
       { k: "Type", v: "On-demand geospatial ML processing service" },
       { k: "Inputs", v: "Pre / post Sentinel-1 SLC archives, optional AOI" },
       { k: "Outputs", v: "Geocoded rasters to object storage or signed URLs" },
+      { k: "Period", v: "Proof of concept October 2025; web application February 2026 – ongoing" },
+      { k: "EMEC role", v: "Full-stack development: backend, geospatial processing and map front end" },
     ],
     narrative:
-      "Deliver a lightweight, on-demand processing service (“Sub-Tool”) that ingests Sentinel-1 SLC (zip) inputs from the Client’s main system via a POST API, executes the required preprocessing and prediction workflow, and returns standardized outputs and status without running continuously.",
+      "Deliver a lightweight, on-demand processing service (“Sub-Tool”) that ingests Sentinel-1 SLC (zip) inputs from the Client’s main system via a POST API, executes the required preprocessing and prediction workflow, and returns standardized outputs and status without running continuously. Building on the proof of concept, EMEC is now developing the full web application: it detects flooding from SAR imagery, produces damage estimates and presents flood extent and estimated damage on a map front end.",
     services: [
       "FastAPI job endpoint and status polling", "Stateless containers that spin up on demand",
       "Coregistration, calibration and coherence", "Speckle filtering and terrain correction", "ML flood prediction",
       "Output to S3 / MinIO or signed download URLs", "Optional webhook callbacks",
+      "Per-job logs and a processing report with parameters, versions and output hashes",
+      "Web application with map views of flood extent and estimated damage",
     ],
   },
   {

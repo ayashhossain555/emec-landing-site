@@ -20,7 +20,7 @@ export default function ProjectsPage() {
     <>
       <PageIntro eyebrow="Projects" title={`Experience across ${countryList}`} />
 
-      <section className="container grid-fit" style={vars({ "--min": "280px", "--gap": "16px" }, { paddingBottom: 56 })}>
+      <section className="container grid-fit" style={vars({ "--min": "360px", "--gap": "16px" }, { paddingBottom: 56 })}>
         {featured.map((f) => (
           <Link key={f.slug} href={`/projects/${f.slug}`} className={styles.card}>
             <Artwork motif={f.art} aspect="16 / 10" />

@@ -9,7 +9,7 @@ export interface Project {
 }
 
 /** Illustration drawn by components/Artwork.tsx until real photography exists. */
-export type Motif = "river" | "drainage" | "bridge" | "biodiversity" | "field" | "dashboard" | "flood" | "assets" | "map" | "portrait";
+export type Motif = "river" | "drainage" | "bridge" | "biodiversity" | "coast" | "field" | "dashboard" | "flood" | "assets" | "map" | "portrait";
 
 export interface Fact {
   k: string;
