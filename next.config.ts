@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
+  // Don't generate AGENTS.md on `next dev`; CLAUDE.md already covers this repo.
+  agentRules: false,
 };
 
 export default nextConfig;

@@ -1,22 +1,22 @@
 import type { Client, TeamMember } from "./types";
 
-// Logos: the design hotlinked Wikimedia files. Drop approved logo files into
-// public/clients/ and set `logo: "/clients/<file>"` to show them.
+// Logos: local copies of the Wikimedia Commons files the design used. Add more by
+// dropping files into public/clients/ and setting `logo: "/clients/<file>"`.
 export const clients: Client[] = [
-  { abbr: "World Bank", name: "The World Bank" },
-  { abbr: "ADB", name: "Asian Development Bank" },
-  { abbr: "JICA", name: "Japan International Cooperation Agency" },
-  { abbr: "AIIB", name: "Asian Infrastructure Investment Bank" },
-  { abbr: "GIZ", name: "Deutsche Gesellschaft für Internationale Zusammenarbeit" },
+  { abbr: "World Bank", name: "The World Bank", logo: "/clients/world-bank.svg" },
+  { abbr: "ADB", name: "Asian Development Bank", logo: "/clients/adb.svg" },
+  { abbr: "JICA", name: "Japan International Cooperation Agency", logo: "/clients/jica.svg" },
+  { abbr: "AIIB", name: "Asian Infrastructure Investment Bank", logo: "/clients/aiib.svg" },
+  { abbr: "GIZ", name: "Deutsche Gesellschaft für Internationale Zusammenarbeit", logo: "/clients/giz.svg" },
   { abbr: "BWDB", name: "Bangladesh Water Development Board" },
   { abbr: "PCKK", name: "Pacific Consultants Co., Ltd." },
   { abbr: "OCG", name: "Oriental Consultants Global Co., Ltd." },
-  { abbr: "BRAC", name: "BRAC" },
+  { abbr: "BRAC", name: "BRAC", logo: "/clients/brac.png" },
   { abbr: "RHD", name: "Roads and Highways Department" },
   { abbr: "BBA", name: "Bangladesh Bridge Authority" },
   { abbr: "BEZA", name: "Bangladesh Economic Zones Authority" },
   { abbr: "LGED", name: "Local Government Engineering Department" },
-  { abbr: "DWASA", name: "Dhaka Water Supply and Sewerage Authority" },
+  { abbr: "DWASA", name: "Dhaka Water Supply and Sewerage Authority", logo: "/clients/dwasa.svg" },
   { abbr: "RAJUK", name: "Rajdhani Unnayan Kartripakkha" },
   { abbr: "DPHE", name: "Department of Public Health Engineering" },
   { abbr: "IIFC", name: "Infrastructure Investment Facilitation Company" },

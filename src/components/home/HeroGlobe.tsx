@@ -43,7 +43,6 @@ export function HeroGlobe({ reserveBottom = 130 }: { reserveBottom?: number }) {
     const rootStyle = getComputedStyle(document.documentElement);
     const displayFont = rootStyle.getPropertyValue("--font-barlow").trim() || "'Barlow Condensed', sans-serif";
     const monoFont = rootStyle.getPropertyValue("--font-jetbrains").trim() || "'JetBrains Mono', monospace";
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const proj = geoOrthographic().clipAngle(90).precision(0.4);
     const path = geoPath(proj, ctx);
@@ -72,7 +71,7 @@ export function HeroGlobe({ reserveBottom = 130 }: { reserveBottom?: number }) {
 
     const draw = (now: number) => {
       const dt = now - last; last = now;
-      if (!dragging && !reduceMotion) rot = [rot[0] + dt * 0.006, rot[1], 0];
+      if (!dragging) rot = [rot[0] + dt * 0.006, rot[1], 0];
       proj.rotate(rot);
       ctx.clearRect(0, 0, W, H);
 
@@ -94,7 +93,7 @@ export function HeroGlobe({ reserveBottom = 130 }: { reserveBottom?: number }) {
       ctx.beginPath(); path(land); ctx.strokeStyle = "rgba(246,247,244,0.9)"; ctx.lineWidth = 0.5; ctx.stroke();
 
       // Animated arcs from HQ
-      const phase = reduceMotion ? 0 : ((now - t0) / 2400) % 1;
+      const phase = ((now - t0) / 2400) % 1;
       for (const s of SITES) {
         if (s.hq) continue;
         ctx.beginPath(); path({ type: "LineString", coordinates: [HQ, s.at] });
