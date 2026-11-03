@@ -8,6 +8,9 @@ export interface Project {
   category: ProjectCategory;
 }
 
+/** Illustration drawn by components/Artwork.tsx until real photography exists. */
+export type Motif = "river" | "drainage" | "bridge" | "biodiversity" | "field" | "dashboard" | "flood" | "assets" | "map" | "portrait";
+
 export interface Fact {
   k: string;
   v: string;
@@ -23,6 +26,8 @@ export interface CaseStudy {
   client: string;
   location: string;
   country: string;
+  /** Illustration shown in place of photography. */
+  art: Motif;
   facts: Fact[];
   narrative: string;
   services: string[];

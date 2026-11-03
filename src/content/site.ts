@@ -11,9 +11,8 @@ export const site = {
   phone: { display: "+880 1706 499827", href: "tel:+8801706499827" },
   emails: {
     primary: "emec.servicesbd@gmail.com",
-    secondary: "info@emecbd.com",
   },
-  countries: ["Bangladesh", "Bhutan", "India", "Ireland", "Japan", "USA"],
+  countries: ["Bangladesh", "Bhutan", "India", "Japan", "USA"],
 } as const;
 
 export const nav = [

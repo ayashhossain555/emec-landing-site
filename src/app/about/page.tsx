@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Artwork } from "@/components/Artwork";
 import { PageIntro } from "@/components/PageIntro";
 import { pillars, site, software } from "@/content/site";
 import { vars } from "@/lib/style";
@@ -17,9 +18,7 @@ export default function AboutPage() {
       />
 
       <section className="container grid-fit" style={vars({ "--min": "420px", "--gap": "56px" }, { paddingBottom: "clamp(56px,8vw,80px)" })}>
-        <div className="placeholder" style={{ aspectRatio: "4 / 3", padding: 16 }}>
-          <span style={{ fontSize: 12 }}>team in the field — survey / drone</span>
-        </div>
+        <Artwork motif="field" aspect="4 / 3" seed={3} label="Illustration: drone and total-station field survey over contour lines" />
         <div className="prose">
           <p>
             EMEC is an esteemed engineering consulting firm that operates in the infrastructure development and
@@ -53,8 +52,8 @@ export default function AboutPage() {
           <span className="eyebrow">Background</span>
           <h2 className="display" style={{ fontSize: "clamp(32px,5.5vw,48px)", lineHeight: 1 }}>Founded in {site.founded}</h2>
           <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.7, color: "var(--c-body-strong)" }}>
-            The company&apos;s growth is attributed to the wealth of experience of its founders, who have a combined
-            experience of 40 years in civil engineering and related fields in diverse industry sectors. With a diverse
+            The company&apos;s growth is attributed to the wealth of experience of its founders, who together bring
+            more than 85 years of experience in civil engineering and related fields in diverse industry sectors. With a diverse
             range of expertise, EMEC can service a wide variety of customers, ranging from small to major enterprises.
           </p>
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Artwork } from "@/components/Artwork";
 import { digitalCapabilities, digitalCaseStudies } from "@/content/services";
 import { stackFull } from "@/content/site";
 import { vars } from "@/lib/style";
@@ -56,7 +57,7 @@ export default function DigitalPage() {
           <div className="stack">
             {digitalCaseStudies.map((p) => (
               <Link key={p.slug} href={`/digital/${p.slug}`} className={`grid-fit ${styles.caseRow}`}>
-                <div className="placeholder" style={{ aspectRatio: "16 / 10" }}><span>{p.shot}</span></div>
+                <Artwork motif={p.art} aspect="16 / 10" label={`Illustration: ${p.shot}`} />
                 <div className="stack" style={{ gap: 14 }}>
                   <span className="mono-label" style={{ color: "var(--c-link)", fontSize: 11.5 }}>{p.client}</span>
                   <h3 className="display" style={{ fontSize: "clamp(26px,4vw,34px)", lineHeight: 1.02 }}>{p.short}</h3>

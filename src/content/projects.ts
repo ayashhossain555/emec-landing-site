@@ -62,6 +62,7 @@ export const projects: Project[] = rows.map(([name, duration, client, location, 
 export const featured: CaseStudy[] = [
   {
     slug: "comprehensive-river-management",
+    art: "river",
     short: "Comprehensive river management capacity enhancement",
     name: "Project for Planning Capacity Enhancement and Establishment of a Technology Adaptation Cycle on Comprehensive River Management",
     client: "JICA · BWDB",
@@ -84,6 +85,7 @@ export const featured: CaseStudy[] = [
   },
   {
     slug: "mirsarai-stormwater-drainage",
+    art: "drainage",
     short: "Stormwater drainage model, design and BOQ — Mirsarai Economic Zone",
     name: "Consultancy Service for the Model, Design, BOQ for Stormwater Drainage of Mirsarai Economic Zone",
     client: "BEZA",
@@ -107,6 +109,7 @@ export const featured: CaseStudy[] = [
   },
   {
     slug: "kewatkhali-bridge-biodiversity",
+    art: "biodiversity",
     short: "Biodiversity and noise assessment — Kewatkhali Bridge",
     name: "Biodiversity and Noise Assessment for the Construction of the Mymensingh Kewatkhali Bridge Project",
     client: "RHD",
@@ -131,6 +134,7 @@ export const featured: CaseStudy[] = [
   },
   {
     slug: "buriganga-bridge",
+    art: "bridge",
     short: "4-lane Buriganga Bridge at Postagola and Fatulla",
     name: "Detailed Design of 4-Lane Buriganga Bridge at Postagola and Preliminary Design of Buriganga Bridge at Fatulla",
     client: "RHD · DECL",

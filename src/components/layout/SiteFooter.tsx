@@ -37,7 +37,6 @@ export function SiteFooter() {
             <span>{site.addressShort}</span>
             <a href={site.phone.href}>{site.phone.display}</a>
             <a href={`mailto:${site.emails.primary}`} className={styles.strong}>{site.emails.primary}</a>
-            <a href={`mailto:${site.emails.secondary}`}>{site.emails.secondary}</a>
           </FooterColumn>
         </div>
 

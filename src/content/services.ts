@@ -43,6 +43,7 @@ export const digitalCapabilities: DigitalCapability[] = [
 export const digitalCaseStudies: DigitalCaseStudy[] = [
   {
     slug: "river-revetment-gis",
+    art: "dashboard",
     short: "River Revetment Management GIS Application",
     name: "River Revetment Management GIS Application",
     client: "JICA Expert Team · Nodi Project",
@@ -68,6 +69,7 @@ export const digitalCaseStudies: DigitalCaseStudy[] = [
   },
   {
     slug: "urban-flood-detection-subtool",
+    art: "flood",
     short: "On-demand Urban Flood Detection (UFD) sub-tool",
     name: "On-Demand Urban Flood Detection Sub-Tool Service",
     client: "PCKK · Japan",
@@ -92,6 +94,7 @@ export const digitalCaseStudies: DigitalCaseStudy[] = [
   },
   {
     slug: "omchhu-asset-management-system",
+    art: "assets",
     short: "Asset Management System — Omchhu River Basin",
     name: "Asset Management System — Business and Functional Requirements, Climate-Resilient Omchhu River Basin Project",
     client: "Phuentsholing Thromde · ADB",

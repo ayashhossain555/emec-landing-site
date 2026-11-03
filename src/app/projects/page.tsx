@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Artwork } from "@/components/Artwork";
 import { PageIntro } from "@/components/PageIntro";
 import { ProjectExplorer } from "@/components/projects/ProjectExplorer";
 import { featured } from "@/content/projects";
@@ -22,9 +23,7 @@ export default function ProjectsPage() {
       <section className="container grid-fit" style={vars({ "--min": "280px", "--gap": "16px" }, { paddingBottom: 56 })}>
         {featured.map((f) => (
           <Link key={f.slug} href={`/projects/${f.slug}`} className={styles.card}>
-            <div className="placeholder" style={{ aspectRatio: "16 / 10", padding: 10 }}>
-              <span style={{ background: "none", padding: 0 }}>project photo</span>
-            </div>
+            <Artwork motif={f.art} aspect="16 / 10" />
             <div className="stack" style={{ padding: 20, gap: 8 }}>
               <span className="mono-label" style={{ color: "var(--c-teal)", letterSpacing: "0.06em" }}>{f.client}</span>
               <h2 className="display" style={{ fontSize: 22, lineHeight: 1.1 }}>{f.short}</h2>

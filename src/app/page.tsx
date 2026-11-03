@@ -1,3 +1,4 @@
+import { Artwork } from "@/components/Artwork";
 import { ClientLogo } from "@/components/home/ClientLogo";
 import Link from "next/link";
 import { HeroGlobe } from "@/components/home/HeroGlobe";
@@ -122,9 +123,7 @@ export default function HomePage() {
           <div className="grid-fit" style={vars({ "--min": "520px" })}>
             {featured.map((f) => (
               <Link key={f.slug} href={`/projects/${f.slug}`} className={styles.featureCard}>
-                <div className="placeholder placeholder--dark" style={{ aspectRatio: "1", padding: 8 }}>
-                  <span style={{ fontSize: 10 }}>site photo</span>
-                </div>
+                <Artwork motif={f.art} aspect="1" tone="dark" />
                 <div className={styles.featureCardBody}>
                   <span className="mono-label" style={{ color: "var(--c-lime)" }}>{f.client}</span>
                   <h3 className="display" style={{ fontSize: 24, lineHeight: 1.1 }}>{f.short}</h3>

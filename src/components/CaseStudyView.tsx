@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Artwork } from "@/components/Artwork";
 import type { CaseStudy } from "@/content/types";
 import { vars } from "@/lib/style";
 
@@ -15,9 +16,7 @@ export function CaseStudyView({ study, back }: { study: CaseStudy; back: { href:
       </header>
 
       <div className="container">
-        <div className="placeholder" style={{ aspectRatio: "21 / 8", padding: 16 }}>
-          <span style={{ fontSize: 12 }}>project hero image — {study.location}</span>
-        </div>
+        <Artwork motif={study.art} aspect="21 / 8" label={`Illustration for ${study.short}, ${study.location}`} />
       </div>
 
       <div

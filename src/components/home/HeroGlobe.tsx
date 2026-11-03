@@ -16,7 +16,6 @@ const SITES: Site[] = [
   { name: "Bhutan", id: "064", at: [89.6, 27.4], labelLeft: true },
   { name: "India", id: "356", at: [80.5, 23.5], labelLeft: true },
   { name: "Japan", id: "392", at: [138.5, 36.2] },
-  { name: "Ireland", id: "372", at: [-8.0, 53.3] },
   { name: "USA", id: "840", at: [-98.5, 39.5] },
 ];
 const ACTIVE = new Set(SITES.map((s) => s.id));
@@ -163,7 +162,7 @@ export function HeroGlobe({ reserveBottom = 130 }: { reserveBottom?: number }) {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="Globe highlighting the countries where EMEC works: Bangladesh (HQ), Bhutan, India, Japan, Ireland and the USA"
+      aria-label="Globe highlighting the countries where EMEC works: Bangladesh (HQ), Bhutan, India, Japan and the USA"
       style={{ position: "absolute", inset: 0, width: "100%", height: "100%", cursor: "grab", touchAction: "none" }}
     />
   );

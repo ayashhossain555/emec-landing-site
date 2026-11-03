@@ -1,0 +1,89 @@
+.frame {
+  /* Artwork palette, built from the design tokens. */
+  --a-bg: var(--c-mint-soft);
+  --a-soft: var(--c-mint);
+  --a-line: var(--c-sage);
+  --a-ink: var(--c-ink);
+  --a-water: var(--c-blue);
+  --a-accent: var(--c-lime);
+  --a-warn: var(--c-gold);
+  --a-panel: var(--c-surface);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.dark {
+  --a-bg: var(--c-ink-raised);
+  --a-soft: var(--c-ink);
+  --a-line: var(--c-line-dark);
+  --a-ink: var(--c-on-dark-muted);
+  --a-water: var(--c-link-on-dark);
+  --a-panel: var(--c-ink);
+}
+
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.overlay {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+}
+
+.bg { fill: var(--a-bg); }
+.contour path { fill: none; stroke: var(--a-line); opacity: 0.55; }
+
+.ink { fill: none; stroke: var(--a-ink); stroke-width: 1; }
+.inkBold { fill: none; stroke: var(--a-ink); stroke-width: 2; stroke-linecap: round; }
+.inkFill { fill: var(--a-ink); }
+.accentFill { fill: var(--a-accent); }
+.dot { fill: var(--a-bg); }
+.soft { fill: var(--a-soft); }
+.panel { fill: var(--a-panel); stroke: var(--a-ink); stroke-width: 1; }
+.bar { fill: var(--a-line); }
+.barSoft { fill: var(--a-line); opacity: 0.45; }
+
+.hatch { fill: none; stroke: var(--a-ink); stroke-dasharray: 1.5 5; opacity: 0.7; }
+.waterStroke { fill: none; stroke: var(--a-water); opacity: 0.55; stroke-linecap: round; }
+.centre { fill: none; stroke: var(--a-bg); stroke-width: 1; stroke-dasharray: 6 6; }
+.waterFill { fill: var(--a-water); opacity: 0.22; }
+.waterLine { fill: none; stroke: var(--a-water); stroke-width: 1.5; }
+.soil { fill: var(--a-soft); stroke: var(--a-ink); stroke-width: 1; }
+
+.pipe { stroke: var(--a-ink); stroke-width: 2.2; stroke-linecap: round; }
+.node { fill: var(--a-bg); stroke: var(--a-ink); stroke-width: 1.5; }
+
+.leaf { fill: var(--a-line); opacity: 0.6; }
+.leafCore { fill: var(--a-accent); opacity: 0.8; }
+
+.flight { fill: none; stroke: var(--a-water); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.rotor { fill: var(--a-bg); stroke: var(--a-ink); stroke-width: 1.5; }
+
+.mapBg { fill: var(--a-bg); stroke: var(--a-line); }
+.segGood, .segWarn, .segBad { fill: none; stroke-width: 5; stroke-linecap: round; }
+.segGood { stroke: var(--a-accent); }
+.segWarn { stroke: var(--a-warn); }
+.segBad { stroke: var(--a-ink); }
+.segGoodFill { fill: var(--a-accent); }
+.segWarnFill { fill: var(--a-warn); }
+.segBadFill { fill: var(--a-ink); }
+
+.cellDry { fill: var(--a-soft); }
+.cellDamp { fill: var(--a-water); opacity: 0.3; }
+.cellWet { fill: var(--a-water); opacity: 0.8; }
+.aoi { fill: none; stroke: var(--a-ink); stroke-width: 1.2; stroke-dasharray: 6 4; }
+
+.pin { fill: var(--a-ink); }
+.pinAlert { fill: var(--a-warn); stroke: var(--a-ink); stroke-width: 1; }
+.halo { fill: var(--a-accent); opacity: 0.25; }
+
+.street { stroke: var(--a-line); stroke-width: 1; opacity: 0.8; }
+.road { fill: none; stroke: var(--a-panel); stroke-width: 9; }
+
+.portraitDisc { fill: var(--a-soft); stroke: var(--a-line); }
+.initials { font-family: var(--font-display); font-weight: 600; font-size: 58px; fill: var(--a-ink); letter-spacing: 0.02em; }
+
+.text { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.08em; fill: var(--a-ink); }
+.textOnInk { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em; fill: var(--a-bg); }
