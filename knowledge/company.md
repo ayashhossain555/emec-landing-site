@@ -63,6 +63,8 @@ _Source: EMEC Profile_V6 (1).docx_
 - EPSON colour printers: V6 lists 1; EMEC Profile.docx lists 2.
 - Wi-Fi routers: 2.
 
+> **Update from EMEC (2026-11-03, not in the documents):** the workstations now use **RTX 5070 Ti** graphics (the documents say RTX 3070). EMEC also has a **heavy-duty workstation** and an **in-house physical server**, and describes all its equipment as current-generation. The About page uses this updated list.
+
 **Software:** Plaxis 2D and 3D, Civil 3D, AutoCAD, ArcGIS, ArcGIS Pro, ERDAS IMAGINE 2014, HEC-RAS, HEC-SSP, HEC-DSSVue, MIKE Zero, Aquaveo SMS 13.2, PCSWMM, GPS-X, SPSS, Adobe Photoshop CS, Adobe Illustrator CS.
 
 **Software stack from the digital work** (SDK doc, LIC portfolio, PoC): Node.js, React, Next.js, PostgreSQL/PostGIS, GeoServer, Leaflet/OpenLayers, FastAPI (Python), Docker, PM2, SNAP (Sentinel-1 processing). Details are in [digital-case-studies.md](digital-case-studies.md).

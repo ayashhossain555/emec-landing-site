@@ -68,8 +68,9 @@ export default function AboutPage() {
           <div className="stack" style={{ gap: 12 }}>
             <span className="eyebrow" style={vars({ "--eyebrow": "var(--c-muted)" })}>Field &amp; office equipment</span>
             <p className="body" style={{ fontSize: 15 }}>
-              Intel Core i9 / RTX3070 modeling workstations, laptops, colour printing and electronic devices for data
-              collection, including drone, multibeam echo sounder, side scan sonar and sub-bottom profiler surveys.
+              Intel Core i9 / RTX 5070 Ti modeling workstations, a heavy-duty workstation for large model runs and an
+              in-house physical server, all current-generation equipment. Plus laptops, colour printing and electronic devices
+              for data collection, including drone, multibeam echo sounder, side scan sonar and sub-bottom profiler surveys.
             </p>
           </div>
         </div>
