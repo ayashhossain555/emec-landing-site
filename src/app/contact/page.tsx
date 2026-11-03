@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import { Artwork } from "@/components/Artwork";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { OfficeMap } from "@/components/contact/OfficeMap";
 import { site } from "@/content/site";
 import { vars } from "@/lib/style";
 
@@ -35,9 +35,7 @@ export default function ContactPage() {
             <a href={`mailto:${site.emails.primary}`} style={{ fontSize: 16, fontWeight: 600 }}>{site.emails.primary}</a>
           </div>
         </address>
-        <a href="https://www.google.com/maps/search/?api=1&query=Lalmatia+Block+A+Dhaka+1207" target="_blank" rel="noopener noreferrer" aria-label="Open EMEC's office location in Google Maps">
-          <Artwork motif="map" aspect="16 / 9" />
-        </a>
+        <OfficeMap />
       </div>
       <ContactForm />
     </section>

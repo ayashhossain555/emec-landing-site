@@ -23,6 +23,7 @@ export function GET() {
     "## Key facts",
     `- Website: ${absolute("/")}`,
     `- Address: ${site.address}`,
+    `- Map: https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`,
     `- Phone: ${site.phone.display}`,
     `- Email: ${site.emails.primary}`,
     `- Countries of work: ${site.countries.join(", ")}`,

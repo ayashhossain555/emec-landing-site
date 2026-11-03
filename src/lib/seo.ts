@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { team } from "@/content/people";
 import { digitalCapabilities, services } from "@/content/services";
+import { mapLinks } from "@/components/contact/OfficeMap";
 import { site } from "@/content/site";
 
 /**
@@ -56,6 +57,8 @@ export function organizationJsonLd() {
         postalCode: "1207",
         addressCountry: "BD",
       },
+      geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
+      hasMap: mapLinks.open,
       areaServed: site.countries.map((name) => ({ "@type": "Country", name })),
       knowsAbout: expertise,
       numberOfEmployees: { "@type": "QuantitativeValue", value: team.filter((m) => !m.intermittent).length },

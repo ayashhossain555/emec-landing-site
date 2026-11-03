@@ -8,6 +8,9 @@ export const site = {
     "EMEC combines hydro-morphologic and computational fluid dynamics modeling with machine learning, remote sensing and WebGIS platforms to solve complex problems in bridge, river embankment, revetment and drainage design.",
   address: "Apt 1-B, House No.-4/1, Block A, Lalmatia, Dhaka-1207, Bangladesh",
   addressShort: "Lalmatia, Dhaka-1207",
+  /** Office pin (23°45'24.2"N 90°22'24.6"E), supplied by EMEC. EMEC has no Google Business listing yet,
+   *  so maps use coordinates; searching the street address pins a neighbouring organisation. */
+  geo: { lat: 23.756722, lng: 90.3735 },
   phone: { display: "+880 1706 499827", href: "tel:+8801706499827" },
   emails: {
     primary: "emec.servicesbd@gmail.com",
