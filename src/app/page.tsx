@@ -1,3 +1,4 @@
+import { ClientLogo } from "@/components/home/ClientLogo";
 import Link from "next/link";
 import { HeroGlobe } from "@/components/home/HeroGlobe";
 import { clients } from "@/content/people";
@@ -141,13 +142,13 @@ export default function HomePage() {
           <span className="eyebrow">04 — Clients</span>
           <h2 className="display h-section">Trusted by agencies and development partners</h2>
         </div>
-        <ul className={`grid-fill tiles ${styles.clientGrid}`} style={vars({ "--min": "140px" })}>
+        <ul className={`grid-fill tiles ${styles.clientGrid}`} style={vars({ "--min": "180px" })}>
           {clients.map((c) => (
             <li key={c.abbr} title={c.name} className={styles.clientTile}>
-              {c.logo ? (
-                // eslint-disable-next-line @next/next/no-img-element -- static export, arbitrary logo aspect ratios
-                <img src={c.logo} alt={`${c.name} logo`} className={styles.clientLogo} loading="lazy" />
-              ) : null}
+              {/* Fixed-height slot on every tile so logos and names line up across the grid. */}
+              <div className={styles.clientLogoSlot} aria-hidden={!c.logo}>
+                {c.logo ? <ClientLogo src={c.logo} alt={`${c.name} logo`} className={styles.clientLogo} /> : null}
+              </div>
               <span className="display" style={{ fontSize: 20, letterSpacing: "0.04em" }}>{c.abbr}</span>
               <span style={{ fontSize: 11.5, lineHeight: 1.35, color: "var(--c-muted)" }}>{c.name}</span>
             </li>

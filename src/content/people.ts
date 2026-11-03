@@ -1,6 +1,6 @@
 import type { Client, TeamMember } from "./types";
 
-// Logos: local copies of the Wikimedia Commons files the design used. Add more by
+// Logos: local copies from Wikimedia Commons / Wikipedia or the organisation's own site. Add more by
 // dropping files into public/clients/ and setting `logo: "/clients/<file>"`.
 export const clients: Client[] = [
   { abbr: "World Bank", name: "The World Bank", logo: "/clients/world-bank.svg" },
@@ -8,31 +8,31 @@ export const clients: Client[] = [
   { abbr: "JICA", name: "Japan International Cooperation Agency", logo: "/clients/jica.svg" },
   { abbr: "AIIB", name: "Asian Infrastructure Investment Bank", logo: "/clients/aiib.svg" },
   { abbr: "GIZ", name: "Deutsche Gesellschaft für Internationale Zusammenarbeit", logo: "/clients/giz.svg" },
-  { abbr: "BWDB", name: "Bangladesh Water Development Board" },
-  { abbr: "PCKK", name: "Pacific Consultants Co., Ltd." },
-  { abbr: "OCG", name: "Oriental Consultants Global Co., Ltd." },
+  { abbr: "BWDB", name: "Bangladesh Water Development Board", logo: "/clients/bwdb.png" },
+  { abbr: "PCKK", name: "Pacific Consultants Co., Ltd.", logo: "/clients/pckk.png" },
+  { abbr: "OCG", name: "Oriental Consultants Global Co., Ltd.", logo: "/clients/ocg.png" },
   { abbr: "BRAC", name: "BRAC", logo: "/clients/brac.png" },
   { abbr: "RHD", name: "Roads and Highways Department" },
   { abbr: "BBA", name: "Bangladesh Bridge Authority" },
-  { abbr: "BEZA", name: "Bangladesh Economic Zones Authority" },
+  { abbr: "BEZA", name: "Bangladesh Economic Zones Authority", logo: "/clients/beza.svg" },
   { abbr: "LGED", name: "Local Government Engineering Department" },
   { abbr: "DWASA", name: "Dhaka Water Supply and Sewerage Authority", logo: "/clients/dwasa.svg" },
-  { abbr: "RAJUK", name: "Rajdhani Unnayan Kartripakkha" },
+  { abbr: "RAJUK", name: "Rajdhani Unnayan Kartripakkha", logo: "/clients/rajuk.jpg" },
   { abbr: "DPHE", name: "Department of Public Health Engineering" },
-  { abbr: "IIFC", name: "Infrastructure Investment Facilitation Company" },
+  { abbr: "IIFC", name: "Infrastructure Investment Facilitation Company", logo: "/clients/iifc.jpg" },
   { abbr: "PT", name: "Phuentsholing Thromde, Bhutan" },
-  { abbr: "KWASA", name: "Khulna WASA" },
+  { abbr: "KWASA", name: "Khulna WASA", logo: "/clients/kwasa.png" },
   { abbr: "14th Bde", name: "14th Brigade Bangladesh Army" },
-  { abbr: "NSU", name: "North South University" },
-  { abbr: "JDI", name: "Japan Development Institute" },
+  { abbr: "NSU", name: "North South University", logo: "/clients/nsu.svg" },
+  { abbr: "JDI", name: "Japan Development Institute", logo: "/clients/jdi.png" },
   { abbr: "DECL", name: "Delight Engineers & Consultants Ltd" },
   { abbr: "EPC", name: "Engineering and Planning Consultants" },
   { abbr: "SPMC", name: "Strategic Planning and Management Consultants Ltd" },
-  { abbr: "DDC", name: "Development Design Consultants Ltd." },
+  { abbr: "DDC", name: "Development Design Consultants Ltd.", logo: "/clients/ddc.png" },
   { abbr: "HTL", name: "HeptaTech Limited" },
-  { abbr: "D.zignscape", name: "D.zignscape Consultants Ltd." },
+  { abbr: "D.zignscape", name: "D.zignscape Consultants Ltd.", logo: "/clients/dzignscape.png" },
   { abbr: "AIA", name: "A. I. Associates Ltd." },
-  { abbr: "CCECC", name: "CCECC" },
+  { abbr: "CCECC", name: "China Civil Engineering Construction Corporation", logo: "/clients/ccecc.png" },
 ];
 
 export const team: TeamMember[] = [
