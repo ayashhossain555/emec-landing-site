@@ -34,7 +34,7 @@ There is no test suite. Verify with `typecheck` + `lint` + `build`, then look at
   - `SiteHeader` uses the active route and the mobile menu.
   - `HeroGlobe` is a d3-geo canvas globe using bundled `world-atlas` data. Its country ISO ids must match `world-atlas` feature ids.
   - `ProjectExplorer` handles filter and search.
-  - `ContactForm` POSTs to FormSubmit (AJAX), with silent spam checks (honeypot, minimum fill time, link limit, `_blacklist`). If the request fails, it falls back to a prefilled `mailto:`.
+  - `ContactForm` POSTs to Web3Forms (key in `site.forms.web3formsKey`), with silent spam checks (honeypot `botcheck`, minimum fill time, link limit, spam phrases). If the key is missing or the request fails, it falls back to a prefilled `mailto:`.
 - **Styling:** design tokens are CSS variables in `src/app/globals.css` (`--c-*` colours, `--font-*`, `--gutter`, `--section-y`). Use the tokens and never hard-code hex values in new code. The file also defines shared primitives (`.container`, `.grid-fit`/`.grid-fill` driven by `--min`/`--gap`, `.tiles`, `.eyebrow`, `.display .h-*`, `.btn--*`, `.chip`, `.dash-list`, `.placeholder`). Component-specific CSS goes in colocated `*.module.css`. Pass CSS custom properties through `style` with `vars()` from `src/lib/style.ts`.
 - **Fonts:** Barlow Condensed (display), Public Sans (body) and JetBrains Mono (labels), loaded via `next/font` in `layout.tsx` and exposed as `--font-barlow/--font-public-sans/--font-jetbrains`.
 - **Imagery:** striped `.placeholder` blocks mark photos the client hasn't supplied yet. Brand files are in `public/brand/`. Client logos are text-only until approved files land in `public/clients/` and a `logo` path is set in `people.ts`.

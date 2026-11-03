@@ -1,44 +1,50 @@
 "use client";
 
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { useEffect, useRef, useState } from "react";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
 import styles from "./ContactForm.module.css";
 
 /**
- * Enquiry form, delivered by FormSubmit (https://formsubmit.co). It needs no account
- * or API key and works from a static export. The first submission sends a one-time
- * activation email to the inbox. Once activated, FormSubmit offers a random alias,
- * which you can put in `ENDPOINT` to hide the address from scrapers.
- * If the request fails, the visitor is offered a pre-filled mailto: link instead.
+ * Enquiry form, delivered by Web3Forms (https://web3forms.com). It works from a static export;
+ * the access key in `site.forms.web3formsKey` is public by design (it can only send to the inbox
+ * it was created for). If the key is missing or the request fails, the visitor is offered a
+ * pre-filled mailto: link instead.
  *
- * Spam defences, all silent: a bot that trips one gets a fake "sent" screen and nothing is delivered.
- *  - honeypot `_honey` (also forwarded, so FormSubmit drops direct POSTs that fill it);
+ * hCaptcha is required: the Web3Forms dashboard enforces it (plus its Strict spam filter), so a POST
+ * without a valid `h-captcha-response` token is rejected server-side.
+ *
+ * Extra spam defences, all silent: a bot that trips one gets a fake "sent" screen and nothing is delivered.
+ *  - honeypot `botcheck` (also forwarded, so Web3Forms rejects direct POSTs that fill it);
  *  - minimum fill time (humans take more than a few seconds);
  *  - link limit and length caps on the message;
- *  - FormSubmit's `_blacklist` drops messages containing common spam phrases server-side.
+ *  - common spam phrases in the message.
  */
-const ENDPOINT = `https://formsubmit.co/ajax/${site.emails.primary}`;
+const ENDPOINT = "https://api.web3forms.com/submit";
 
 const MIN_FILL_MS = 4000;
 const MAX_LINKS = 2;
-const BLACKLIST = "seo, backlink, crypto, bitcoin, casino, viagra, cialis, loan offer, guest post, web traffic, rank your website, porn";
+const SPAM_PHRASES = /\b(seo|backlinks?|crypto|bitcoin|casino|viagra|cialis|loan offer|guest post|web traffic|rank your website|porn)\b/i;
 
 /** Returns true when the submission looks automated. */
 function looksLikeSpam(data: FormData, startedAt: number): boolean {
-  if (String(data.get("_honey") ?? "").trim()) return true;
+  if (String(data.get("botcheck") ?? "").trim()) return true;
   if (Date.now() - startedAt < MIN_FILL_MS) return true;
   const details = String(data.get("details") ?? "");
   if ((details.match(/https?:\/\/|www\./gi) ?? []).length > MAX_LINKS) return true;
+  if (SPAM_PHRASES.test(details)) return true;
   return false;
 }
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "captcha";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [fallback, setFallback] = useState("");
   const startedAt = useRef(0);
+  const captcha = useRef<HCaptcha>(null);
+  const [token, setToken] = useState("");
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
@@ -50,6 +56,11 @@ export function ContactForm() {
     if (looksLikeSpam(data, startedAt.current)) {
       form.reset();
       setStatus("sent"); // pretend success so bots don't retry
+      return;
+    }
+
+    if (!token) {
+      setStatus("captcha");
       return;
     }
 
@@ -67,29 +78,33 @@ export function ContactForm() {
 
     setStatus("sending");
     try {
+      if (!site.forms.web3formsKey) throw new Error("no form key");
       const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
+          access_key: site.forms.web3formsKey,
+          subject,
+          from_name: `${site.name} website`,
           name: get("name"),
           organisation: get("organisation"),
-          email: get("email"),
+          email: get("email"), // Web3Forms sets this as the reply-to address
           service: get("service"),
           message: get("details"),
-          _subject: subject,
-          _replyto: get("email"),
-          _template: "table",
-          _captcha: "false",
-          _honey: get("_honey"),
-          _blacklist: BLACKLIST,
+          botcheck: get("botcheck"),
+          "h-captcha-response": token,
         }),
       });
-      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean };
-      if (!res.ok || String(json.success) === "false") throw new Error("send failed");
+      const json = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || json.success !== true) throw new Error("send failed");
       form.reset();
       setStatus("sent");
     } catch {
       setStatus("error");
+    } finally {
+      // Tokens are single-use: always start the next attempt with a fresh challenge.
+      captcha.current?.resetCaptcha();
+      setToken("");
     }
   }
 
@@ -126,7 +141,22 @@ export function ContactForm() {
         </select>
       </label>
       <label className={styles.field}>Project details<textarea name="details" rows={5} required minLength={20} maxLength={5000} /></label>
-      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="visually-hidden" />
+      <input type="text" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="visually-hidden" />
+      <div className={styles.captcha}>
+        <HCaptcha
+          ref={captcha}
+          sitekey={site.forms.hcaptchaSiteKey}
+          reCaptchaCompat={false}
+          onVerify={(t) => {
+            setToken(t);
+            if (status === "captcha") setStatus("idle");
+          }}
+          onExpire={() => setToken("")}
+        />
+      </div>
+      {status === "captcha" && (
+        <p role="alert" className={styles.error}>Please tick the “I am human” check above, then send again.</p>
+      )}
       {status === "error" && (
         <p role="alert" className={styles.error}>
           The enquiry couldn’t be sent. Please <a href={fallback}>email it to us instead</a>. It opens already filled in.

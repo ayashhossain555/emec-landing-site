@@ -12,6 +12,12 @@ export const site = {
   emails: {
     primary: "emec.servicesbd@gmail.com",
   },
+  forms: {
+    /** Web3Forms access key for emails.primary. Public by design; empty = form falls back to mailto:. */
+    web3formsKey: "c7cd14df-4bd7-491e-9031-3e8197d01798",
+    /** Web3Forms' shared hCaptcha site key (free plan). hCaptcha is enforced in the Web3Forms dashboard. */
+    hcaptchaSiteKey: "50b2fe65-b00b-4b9e-ad62-3ba471098be2",
+  },
   countries: ["Bangladesh", "Bhutan", "India", "Japan", "USA"],
 } as const;
 
