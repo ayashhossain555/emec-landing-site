@@ -2,9 +2,42 @@
 
 The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest session first.
 
-**Status:** The full site is implemented from the Claude Design project and pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). It builds as a static export (20 routes) and typecheck and lint are clean. It is waiting on client content decisions, real imagery and a hosting choice.
+**Status:** The full site is implemented from the Claude Design project and pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). It builds as a static export (20 routes) and typecheck and lint are clean. 22 of 30 client logos are in. It is waiting on client content decisions, real imagery, the remaining logos and a hosting choice.
 
 ## Sessions
+
+### 2026-11-03: Globe rotation, client logos, AGENTS.md off
+**Done**
+- Deleted `AGENTS.md` and set `agentRules: false` in `next.config.ts`, so `next dev` stops generating it.
+- `HeroGlobe` now always auto-rotates, as in the design. Windows "Animation effects" off was triggering reduced motion and freezing it. Drag still works.
+- Added 22 of 30 client logos in `public/clients/`, set via `logo` in `src/content/people.ts`:
+  - Wikimedia Commons / Wikipedia: World Bank, ADB, JICA, AIIB, GIZ, BRAC, DWASA, BWDB, BEZA, RAJUK, IIFC, KWASA, NSU, CCECC, PCKK, plus the Government Seal for LGED.
+  - The organisation's own site: OCG, JDI, DDC (ddclbd.com), d.zignscape.
+  - Supplied by the user: RHD, BBA (white backgrounds made transparent).
+- New `src/components/home/ClientLogo.tsx` sizes logos by area, so wordmarks and seals look equally weighted.
+- The client grid has a fixed 64px logo slot at the top of every tile, and 6 columns (`--min: 180px`) fill 5 rows exactly.
+- CCECC's card now shows the full name "China Civil Engineering Construction Corporation".
+- Checked all 14 routes at 390px: no horizontal overflow.
+- Commits `b55bae0`, `6c6553b` and `e5c9fa0` are pushed to `origin/main`.
+
+**Decisions**
+- The globe ignores `prefers-reduced-motion`, at the user's request to match the design. If accessibility matters later, a slower spin is the fallback.
+- Logos are local copies rather than hotlinks, so the static export has no third-party image requests.
+- The Bangladesh Army candidate was skipped because it was the Army Aviation roundel, the wrong emblem for the 14th Brigade.
+- The `.gov.bd` portals show a generic government seal in the logo slot, but RHD and BBA have their own logos. Only LGED uses the seal, as the user chose.
+
+**Next up**
+- [ ] Find logos for the remaining 8: DPHE, 14th Bde (Army), Phuentsholing Thromde, DECL, EPC, SPMC, HeptaTech, A. I. Associates
+- [ ] Get higher-res OCG (88x100) and d.zignscape (203x55) logos, which look soft
+- [ ] Choose hosting (Vercel, Netlify or GitHub Pages) and the domain (`site.url` = `https://emecbd.com`) (carried over)
+- [ ] Resolve the open content questions with EMEC, then update `src/content/*` (carried over)
+- [ ] Replace the `.placeholder` blocks with real photos (carried over)
+- [ ] Choose a contact-form backend and wire it into `ContactForm` (carried over)
+- [ ] Consider case studies from `knowledge/`: GIZ CONNECT, BRAC RISE, PCKK flood detection (carried over)
+
+**Open questions**
+- EMEC should confirm permission to show the 22 client logos (third-party trademarks) before launch.
+- The six content conflicts from the earlier entry are still open.
 
 ### 2026-11-03: Merge, push and repo housekeeping
 **Done**
