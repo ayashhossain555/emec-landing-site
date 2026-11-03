@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Design tokens — sourced from the Claude Design "EMEC Website" project.
+   Every colour in the UI should come from here.
+   ========================================================================== */
+:root {
+  /* Surfaces */
+  --c-bg: #f6f7f4;
+  --c-surface: #ffffff;
+  --c-surface-hover: #f9faf8;
+  --c-mint: #e3ecd8;
+  --c-mint-soft: #eef3ea;
+  --c-ink: #17302b;          /* primary text + dark panels */
+  --c-ink-deep: #10231f;     /* deepest panels (AI & digital) */
+  --c-ink-raised: #1c3933;
+
+  /* Text */
+  --c-body-strong: #2f433d;
+  --c-body: #41544e;
+  --c-muted: #5d6f69;
+  --c-faint: #8a9893;
+  --c-on-dark: #f6f7f4;
+  --c-on-dark-body: #b9c7c1;
+  --c-on-dark-muted: #8fa59d;
+  --c-on-dark-footer: #c9d6d0;
+
+  /* Lines */
+  --c-line: #dfe3dc;
+  --c-line-strong: #cfd6cd;
+  --c-line-soft: #e3e7e1;
+  --c-line-faint: #eef0ec;
+  --c-line-dark: #2f4b45;
+  --c-line-darker: #2a4540;
+
+  /* Brand accents (from the logo) */
+  --c-teal: #5f9a8a;
+  --c-sage: #7bae9f;
+  --c-blue: #2a8fc4;
+  --c-link: #1f7fae;
+  --c-link-on-dark: #7fc6ea;
+  --c-gold: #e8bd2a;
+  --c-lime: #b0c584;
+
+  /* Placeholder stripes for not-yet-supplied photography */
+  --stripe-a: #dfe7e0;
+  --stripe-b: #e9eee8;
+  --stripe-dark-a: #22403a;
+  --stripe-dark-b: #284840;
+
+  /* Type */
+  --font-display: var(--font-barlow), "Barlow Condensed", sans-serif;
+  --font-body: var(--font-public-sans), "Public Sans", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  /* Layout */
+  --max-w: 1280px;
+  --gutter: clamp(20px, 4vw, 32px);
+  --section-y: clamp(56px, 8vw, 96px);
+  --radius: 2px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+a { color: var(--c-link); text-decoration: none; }
+a:hover { color: var(--c-ink); }
+
+input, textarea, select, button { font-family: inherit; }
+
+:focus-visible { outline: 2px solid var(--c-blue); outline-offset: 2px; }
+
+img { max-width: 100%; display: block; }
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+.container { max-width: var(--max-w); margin: 0 auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); }
+.stack { display: flex; flex-direction: column; }
+
+/* Responsive auto-fit grid: set --min on the element. */
+.grid-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 280px)), 1fr));
+  gap: var(--gap, 24px);
+}
+.grid-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min, 280px)), 1fr));
+  gap: var(--gap, 24px);
+}
+
+/* Hairline tile grids: 1px gap over a line-coloured background. */
+.tiles { gap: 1px; background: var(--c-line); border: 1px solid var(--c-line); }
+.tiles--dark { gap: 1px; background: var(--c-line-darker); border: 1px solid var(--c-line-darker); }
+
+.row-between { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+
+/* Surfaces */
+.surface-white { background: var(--c-surface); border-block: 1px solid var(--c-line); }
+.surface-ink { background: var(--c-ink); color: var(--c-on-dark); }
+.surface-deep { background: var(--c-ink-deep); color: var(--c-on-dark); }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--eyebrow, var(--c-teal));
+}
+.eyebrow--ruled { display: flex; gap: 10px; align-items: center; }
+.eyebrow--ruled::before { content: ""; width: 28px; height: 2px; background: var(--c-gold); }
+
+.mono { font-family: var(--font-mono); }
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.display { margin: 0; font-family: var(--font-display); font-weight: 600; }
+.h-hero { font-size: clamp(48px, 6.4vw, 88px); line-height: 0.95; letter-spacing: -0.01em; text-wrap: balance; }
+.h-page { font-size: clamp(44px, 5.6vw, 76px); line-height: 0.98; text-wrap: balance; }
+.h-section { font-size: clamp(34px, 6vw, 52px); line-height: 1; text-wrap: balance; }
+.h-sub { font-size: clamp(28px, 4.6vw, 40px); line-height: 1.02; }
+.h-card { font-size: 30px; line-height: 1.05; }
+
+.lead { margin: 0; font-size: 18px; line-height: 1.6; color: var(--c-body); max-width: 560px; text-wrap: pretty; }
+.body { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--c-body); }
+.prose { display: flex; flex-direction: column; gap: 20px; font-size: 16.5px; line-height: 1.7; color: var(--c-body-strong); }
+.prose p { margin: 0; }
+
+.surface-ink .lead, .surface-deep .lead, .surface-ink .body, .surface-deep .body { color: var(--c-on-dark-body); }
+
+/* ==========================================================================
+   Buttons & links
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 15px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn--primary { background: var(--c-blue); color: #fff; }
+.btn--primary:hover { background: var(--c-ink); color: #fff; }
+.btn--dark { background: var(--c-ink); color: var(--c-on-dark); }
+.btn--dark:hover { background: var(--c-blue); color: #fff; }
+.btn--outline { background: transparent; color: var(--c-ink); border-color: var(--c-ink); }
+.btn--outline:hover { background: var(--c-ink); color: #fff; }
+.btn--gold { background: var(--c-gold); color: var(--c-ink-deep); }
+.btn--gold:hover { background: var(--c-on-dark); color: var(--c-ink-deep); }
+
+.link-arrow { font-size: 15px; font-weight: 600; color: var(--c-link); }
+.link-arrow:hover { color: var(--c-ink); }
+.surface-ink .link-arrow, .surface-deep .link-arrow { color: var(--c-link-on-dark); }
+.surface-ink .link-arrow:hover, .surface-deep .link-arrow:hover { color: #fff; }
+
+/* ==========================================================================
+   Small components
+   ========================================================================== */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 7px 11px;
+  border: 1px solid var(--c-line-strong);
+  background: var(--c-surface);
+}
+.chip--dark { font-size: 12.5px; background: transparent; border-color: var(--c-line-dark); color: #d6e0dc; }
+.chip--soft { font-size: 12px; padding: 5px 9px; background: var(--c-mint-soft); border: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--dot, var(--c-sage)); flex: none; }
+
+.dash-list { list-style: none; margin: 0; padding: 0; }
+.dash-list li { display: flex; gap: 10px; }
+.dash-list li::before { content: "—"; color: var(--dash, var(--c-teal)); }
+
+/* Striped placeholder for photography that hasn't been supplied yet. */
+.placeholder {
+  position: relative;
+  background: repeating-linear-gradient(135deg, var(--stripe-a) 0 10px, var(--stripe-b) 10px 20px);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+}
+.placeholder--dark { background: repeating-linear-gradient(135deg, var(--stripe-dark-a) 0 8px, var(--stripe-dark-b) 8px 16px); }
+.placeholder > span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c-muted);
+  background: var(--c-bg);
+  padding: 5px 9px;
+}
+.placeholder--dark > span { background: transparent; color: #9fb5ad; padding: 0; }
+
+.cta-band {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: clamp(28px, 5vw, 56px) clamp(22px, 5vw, 48px);
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

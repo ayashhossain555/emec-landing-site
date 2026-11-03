@@ -1,0 +1,26 @@
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  padding: clamp(22px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-self: start;
+}
+
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; }
+.field input, .field select, .field textarea {
+  padding: 13px;
+  border: 1px solid var(--c-line-strong);
+  font-size: 15px;
+  font-weight: 400;
+  background: var(--c-surface-hover);
+  border-radius: 0;
+}
+.field textarea { resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--c-blue); outline: none; }
+
+.thanks { display: flex; flex-direction: column; gap: 12px; padding-block: 40px; }
+.thanksDot { width: 12px; height: 12px; background: var(--c-lime); border-radius: 50%; }

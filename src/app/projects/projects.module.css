@@ -1,0 +1,9 @@
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--c-ink); color: inherit; }

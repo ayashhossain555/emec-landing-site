@@ -1,0 +1,90 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(246, 247, 244, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.bar {
+  padding-block: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; color: inherit; }
+.brand img { width: 40px; height: 40px; object-fit: contain; }
+
+.wordmark { display: flex; flex-direction: column; line-height: 1; }
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.22em;
+  color: var(--c-teal);
+}
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--c-muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.desktopNav { display: flex; align-items: center; gap: 4px; }
+.navLink {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-muted);
+  border-bottom: 2px solid transparent;
+}
+.navLink:hover { color: var(--c-ink); }
+.navLink[aria-current="page"] { color: var(--c-ink); border-bottom-color: var(--c-gold); }
+.cta { margin-left: 8px; padding: 11px 18px; font-size: 14px; }
+
+.menuButton {
+  display: none;
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.menuButton span { width: 20px; height: 2px; background: var(--c-ink); }
+
+.mobileNav {
+  display: none;
+  border-top: 1px solid var(--c-line);
+  background: var(--c-bg);
+  padding: 8px 20px 20px;
+  flex-direction: column;
+}
+.mobileLink {
+  border-bottom: 1px solid var(--c-line-soft);
+  padding: 16px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--c-muted);
+}
+.mobileLink[aria-current="page"] { color: var(--c-ink); }
+.mobileCta { margin-top: 16px; padding: 16px; }
+
+@media (max-width: 1099px) {
+  .desktopNav { display: none; }
+  .menuButton { display: flex; }
+  .mobileNav { display: flex; }
+}
+
+@media (max-width: 419px) {
+  .tagline { display: none; }
+}

@@ -1,0 +1,79 @@
+.root { display: flex; flex-direction: column; gap: 20px; }
+
+.controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.filter {
+  cursor: pointer;
+  padding: 9px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid var(--c-line-strong);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  border-radius: 999px;
+  display: flex;
+  gap: 8px;
+}
+.filter[aria-pressed="true"] { background: var(--c-ink); color: #fff; border-color: var(--c-ink); }
+.count { font-family: var(--font-mono); opacity: 0.7; }
+
+.search { flex: 1 1 240px; max-width: 360px; }
+.search input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--c-line-strong);
+  background: var(--c-surface);
+  font-size: 15px;
+  border-radius: var(--radius);
+}
+.search input:focus { border-color: var(--c-blue); outline: none; }
+
+.table { background: var(--c-surface); border: 1px solid var(--c-line); overflow-x: auto; }
+
+.row {
+  display: grid;
+  grid-template-columns: 56px minmax(320px, 3fr) minmax(180px, 1.4fr) 110px 110px;
+  min-width: 820px;
+  border-bottom: 1px solid var(--c-line-faint);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+.row > span { padding: 16px; }
+.row:not(.head):hover { background: #f3f6f1; }
+
+.head {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  border-bottom-color: var(--c-line);
+}
+.head > span { padding-block: 14px; }
+
+.sn { font-family: var(--font-mono); font-size: 12px; color: var(--c-faint); }
+.name { display: flex; flex-direction: column; gap: 6px; font-weight: 500; }
+.cat { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 400; }
+.meta { color: var(--c-body); }
+
+.empty { padding: 40px; text-align: center; color: var(--c-muted); }
+
+/* Narrow screens: stacked rows instead of a horizontally-scrolling table. */
+@media (max-width: 859px) {
+  .head { display: none; }
+  .row {
+    min-width: 0;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "name sn" "client client" "duration location";
+    padding: 18px;
+    gap: 8px 14px;
+  }
+  .row > span { padding: 0; }
+  .sn { grid-area: sn; }
+  .name { grid-area: name; flex-direction: column-reverse; font-size: 15px; }
+  .row > span:nth-child(3) { grid-area: client; }
+  .row > span:nth-child(4), .row > span:nth-child(5) { font-size: 13px; color: var(--c-muted); }
+  .row > span:nth-child(5) { justify-self: end; }
+  .row:not(.head) > span:nth-child(3) { font-size: 13px; color: var(--c-muted); }
+}

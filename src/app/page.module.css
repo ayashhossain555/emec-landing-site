@@ -1,0 +1,108 @@
+.block { display: flex; flex-direction: column; gap: 48px; }
+.heading { display: flex; flex-direction: column; gap: 14px; }
+
+/* Hero */
+.hero {
+  --min: 460px;
+  --gap: 56px;
+  align-items: center;
+  padding-block: clamp(56px, 8vw, 72px) 56px;
+}
+.heroCopy { display: flex; flex-direction: column; gap: 28px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.globeCard {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 620px;
+  background: var(--c-mint);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.globeStrip {
+  position: absolute;
+  inset: auto 0 0 0;
+  background: var(--c-ink);
+  color: var(--c-on-dark);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.globeStripHead { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.globeLabel, .globeHint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+}
+.globeHint { color: var(--c-on-dark-muted); letter-spacing: 0.08em; }
+.countryList { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.countryList li {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.countryList li::before { content: ""; width: 6px; height: 6px; background: var(--c-gold); border-radius: 50%; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.stat { padding: var(--gutter) 24px var(--gutter) 0; display: flex; flex-direction: column; gap: 6px; }
+.statValue { font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 7vw, 56px); line-height: 1; }
+.statLabel { font-size: 14px; color: var(--c-muted); }
+
+/* Dark capability tiles */
+.darkTile {
+  background: var(--c-ink-deep);
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 230px;
+}
+
+/* Service tiles */
+.serviceTile {
+  background: var(--c-bg);
+  color: inherit;
+  padding: var(--gutter) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 300px;
+  transition: background-color 0.15s;
+}
+.serviceTile:hover { background: var(--c-surface); color: inherit; }
+.serviceTileHead { display: flex; justify-content: space-between; align-items: center; }
+
+/* Featured work cards */
+.featureCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 20px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid var(--c-line-dark);
+  color: var(--c-on-dark);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.featureCard:hover { border-color: var(--c-sage); background: var(--c-ink-raised); color: var(--c-on-dark); }
+.featureCardBody { display: flex; flex-direction: column; gap: 10px; }
+
+/* Clients */
+.clientGrid { list-style: none; margin: 0; padding: 0; min-width: 0; }
+.clientTile {
+  background: var(--c-bg);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 150px;
+}
+.clientLogo { width: 100%; height: 56px; object-fit: contain; object-position: left; margin-bottom: 6px; }

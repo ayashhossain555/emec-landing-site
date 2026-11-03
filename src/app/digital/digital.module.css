@@ -1,0 +1,28 @@
+.capCard {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.capItems {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-line-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.capItems li { font-size: 14px; line-height: 1.45; gap: 8px; }
+
+.caseRow {
+  --min: 340px;
+  --gap: 32px;
+  padding-block: 36px;
+  border-top: 1px solid var(--c-line);
+  color: inherit;
+  transition: background-color 0.15s;
+}
+.caseRow:hover { background: var(--c-surface-hover); color: inherit; }

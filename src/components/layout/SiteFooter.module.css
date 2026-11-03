@@ -1,0 +1,48 @@
+.footer { background: var(--c-ink); color: var(--c-on-dark-footer); }
+
+.inner {
+  padding-block: 64px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.columns { display: flex; flex-wrap: wrap; gap: 40px 48px; }
+
+.about { display: flex; flex-direction: column; gap: 16px; min-width: 0; flex: 2 1 300px; }
+.about p { margin: 0; font-size: 14.5px; line-height: 1.6; max-width: 380px; }
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.logoTile { background: var(--c-bg); padding: 6px; display: flex; }
+.logoTile img { width: 36px; height: 36px; object-fit: contain; }
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.22em;
+  color: var(--c-on-dark);
+}
+
+.column { display: flex; flex-direction: column; gap: 10px; flex: 1 1 150px; font-size: 14.5px; line-height: 1.5; }
+.column a { color: var(--c-on-dark-footer); }
+.column a:hover { color: #fff; }
+.column a.strong { color: var(--c-on-dark); }
+
+.heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-lime);
+}
+
+.legal {
+  border-top: 1px solid var(--c-line-dark);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--c-on-dark-muted);
+}
