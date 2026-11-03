@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Artwork } from "@/components/Artwork";
 import { PageIntro } from "@/components/PageIntro";
@@ -8,10 +9,10 @@ import { site } from "@/content/site";
 import { vars } from "@/lib/style";
 import styles from "./projects.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description: `Hydro-morphology, drainage, environmental and AI/GIS assignments across ${site.countries.join(", ")}.`,
-};
+});
 
 const countryList = `${site.countries.slice(0, -1).join(", ")} and the ${site.countries.at(-1)}`;
 

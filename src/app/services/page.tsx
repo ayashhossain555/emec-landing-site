@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { PageIntro } from "@/components/PageIntro";
 import { services } from "@/content/services";
 import { vars } from "@/lib/style";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Services",
   description: "Hydro-morphology and bridge hydraulics, water and municipal infrastructure, environment and biodiversity, and AI, WebGIS and remote sensing.",
-};
+});
 
 export default function ServicesPage() {
   return (

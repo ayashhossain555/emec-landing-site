@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Artwork } from "@/components/Artwork";
 import { digitalCapabilities, digitalCaseStudies } from "@/content/services";
@@ -6,10 +7,10 @@ import { stackFull } from "@/content/site";
 import { vars } from "@/lib/style";
 import styles from "./digital.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "AI & Digital",
   description: "Machine learning, remote sensing and WebGIS for water and infrastructure — from SAR flood detection to O&M platforms for river training works.",
-};
+});
 
 export default function DigitalPage() {
   return (

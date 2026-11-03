@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Artwork } from "@/components/Artwork";
 import { PageIntro } from "@/components/PageIntro";
 import { pillars, site, software } from "@/content/site";
 import { vars } from "@/lib/style";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description: "An engineering consulting firm in infrastructure development and environmental management, founded in Dhaka in 2018.",
-};
+});
 
 export default function AboutPage() {
   return (

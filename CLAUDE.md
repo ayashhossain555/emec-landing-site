@@ -28,12 +28,13 @@ There is no test suite. Verify with `typecheck` + `lint` + `build`, then look at
 
   Both render the shared `components/CaseStudyView.tsx`. New slugs need no routing changes.
 - **Hosting:** HostGator shared hosting (Apache), static files in `public_html`, canonical host `www.emecbd.com`. Redirects and 410s for old WordPress URLs live in `public/.htaccess`. Runbook: `DEPLOY.md`.
-- **Static export constraints** (`next.config.ts`: `output: "export"`, `trailingSlash`, unoptimized images). There are no server actions, route handlers, middleware or runtime `next/image` optimisation. Metadata routes (`sitemap.ts`, `robots.ts`) need `export const dynamic = "force-static"`.
+- **Static export constraints** (`next.config.ts`: `output: "export"`, `trailingSlash`, unoptimized images). There are no server actions, middleware or runtime `next/image` optimisation. The only route handlers are build-time `GET`s (`llms.txt/route.ts`, `og.png/route.tsx`). They and the metadata routes (`sitemap.ts`, `robots.ts`) need `export const dynamic = "force-static"`.
+- **SEO / AI search:** `src/lib/seo.ts` has `pageMetadata()` (every page uses it, so OG/Twitter tags stay complete) and the JSON-LD builders, rendered with `components/JsonLd.tsx`. `/llms.txt` and the JSON-LD are generated from `src/content/`, so content edits flow through automatically.
 - **Client components are kept minimal:**
   - `SiteHeader` uses the active route and the mobile menu.
   - `HeroGlobe` is a d3-geo canvas globe using bundled `world-atlas` data. Its country ISO ids must match `world-atlas` feature ids.
   - `ProjectExplorer` handles filter and search.
-  - `ContactForm` has no backend. It opens a prefilled `mailto:`. Swap `onSubmit` to POST to a form service once one is chosen.
+  - `ContactForm` POSTs to FormSubmit (AJAX), with silent spam checks (honeypot, minimum fill time, link limit, `_blacklist`). If the request fails, it falls back to a prefilled `mailto:`.
 - **Styling:** design tokens are CSS variables in `src/app/globals.css` (`--c-*` colours, `--font-*`, `--gutter`, `--section-y`). Use the tokens and never hard-code hex values in new code. The file also defines shared primitives (`.container`, `.grid-fit`/`.grid-fill` driven by `--min`/`--gap`, `.tiles`, `.eyebrow`, `.display .h-*`, `.btn--*`, `.chip`, `.dash-list`, `.placeholder`). Component-specific CSS goes in colocated `*.module.css`. Pass CSS custom properties through `style` with `vars()` from `src/lib/style.ts`.
 - **Fonts:** Barlow Condensed (display), Public Sans (body) and JetBrains Mono (labels), loaded via `next/font` in `layout.tsx` and exposed as `--font-barlow/--font-public-sans/--font-jetbrains`.
 - **Imagery:** striped `.placeholder` blocks mark photos the client hasn't supplied yet. Brand files are in `public/brand/`. Client logos are text-only until approved files land in `public/clients/` and a `logo` path is set in `people.ts`.

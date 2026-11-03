@@ -69,4 +69,6 @@ export interface TeamMember {
   qual?: string;
   years?: number;
   skills: string[];
+  /** Not a permanent employee: an expert engaged per project. Listed separately on /team. */
+  intermittent?: boolean;
 }

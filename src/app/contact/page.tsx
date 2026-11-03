@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Artwork } from "@/components/Artwork";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { site } from "@/content/site";
 import { vars } from "@/lib/style";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description: `Tell us about your project. ${site.address}. ${site.phone.display}.`,
-};
+});
 
 const rowStyle = { padding: "18px 0", borderBottom: "1px solid var(--c-line-strong)", gap: 4 } as const;
 
