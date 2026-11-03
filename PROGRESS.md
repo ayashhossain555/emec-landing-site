@@ -6,6 +6,26 @@ The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest s
 
 ## Sessions
 
+### 2026-11-03 — About page equipment correction (night)
+**Done**
+- `src/app/about/page.tsx`: "Field & office equipment" now says Intel Core i9 / RTX 5070 Ti workstations, a heavy-duty workstation, an in-house physical server and "all current-generation equipment" (was RTX3070).
+- `knowledge/company.md`: noted the update from EMEC under Hardware (the source documents still say RTX 3070).
+- Deployed and verified live on `/about/`. Commit `917b998` is pushed.
+**Decisions**
+- Kept "Intel Core i9", because only the graphics card was corrected.
+- Wrote "current-generation" rather than "latest", so it stays true as newer models come out.
+**Next up**
+- [ ] Google Business Profile for EMEC, then point the map at the listing (carried over).
+- [ ] Google Search Console: add `https://www.emecbd.com/`, submit `sitemap.xml`, and run Rich Results Test (carried over).
+- [ ] Test email: send and receive one message on a company mailbox (carried over).
+- [ ] Around 2026-12-03, if the site is stable: delete `~/wp-old`, the server backup zip, and only the `…_wp495` database and its user (carried over).
+- [ ] Store the two downloaded backups somewhere safer than the Downloads folder (carried over).
+- [ ] Higher-res OCG, d.zignscape and DECL logos (carried over).
+- [ ] Replace the `Artwork` illustrations with real photos once supplied (carried over).
+**Open questions**
+- Equipment wording: are the CPUs still Core i9, and what is the heavy-duty workstation mainly used for? The copy currently says "for large model runs" (new).
+- The six open questions from the previous entry still stand (package script in Git Bash, `info@emecbd.com`, logo permission, 14th Bde crest, review of content calls, `.cpanel.zip`).
+
 ### 2026-11-03 — Web3Forms + hCaptcha contact form, Google Map on contact page (late evening)
 **Done**
 - Contact form moved from FormSubmit to Web3Forms (`ContactForm.tsx`, `ContactForm.module.css`, `site.ts`):
