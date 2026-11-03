@@ -21,6 +21,7 @@ _Source: EMEC Profile_V6 (1).docx; EMEC Profile.docx; EMEC Profile.pdf_
 ## Office and contacts
 
 - **Address:** Apt 1-B, House No. 4/1, Block A, Lalmatia, Dhaka-1207, Bangladesh. V6 and the info tables give the short form "4/1 Block A Lalmatia Apt 1B".
+  - **Map pin (from EMEC, 2026-11-03, not in the documents):** 23°45'24.2"N 90°22'24.6"E (23.756722, 90.3735). Google Maps has no EMEC listing, and searching the street address pins SSS (House 6/1, Block A) instead.
 - **Phone / mobile:** +880 1706 499827 (written "01706499827" in the info tables).
 - **Email on the profile cover:** emeiconsultant@gmail.com
 - **Email under "Communication Facilities":** this is a personal Gmail address of the contact person, so it is left out here. No `@emecbd.com` address appears in any source.

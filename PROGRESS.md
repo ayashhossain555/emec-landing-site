@@ -2,9 +2,49 @@
 
 The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest session first.
 
-**Status:** **Live at https://www.emecbd.com** since 2026-11-03, as a static export on the existing HostGator account (`public_html`; no DNS changes, email untouched). The repo is pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). The build has 24 routes (including `/llms.txt` and `/og.png`), and typecheck and lint are clean. **All 30 client logos are in**, and SVG illustrations stand in for photos. The site has full SEO/AI-search metadata. The contact form posts to FormSubmit, which is **not yet activated** (FormSubmit was down, error 522). Waiting on real imagery and logo permission. WordPress is kept in `~/wp-old` for rollback until about 2026-12-03.
+**Status:** **Live at https://www.emecbd.com** since 2026-11-03, as a static export on the existing HostGator account (`public_html`; no DNS changes, email untouched). The repo is pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). The build has 24 routes (including `/llms.txt` and `/og.png`), and typecheck and lint are clean. **All 30 client logos are in**, and SVG illustrations stand in for photos. The site has full SEO/AI-search metadata. The contact form posts to **Web3Forms with hCaptcha** (tested end to end; enquiries reach emec.servicesbd@gmail.com). The contact page has a live Google Map pinned at the office. Waiting on real imagery and logo permission. WordPress is kept in `~/wp-old` for rollback until about 2026-12-03.
 
 ## Sessions
+
+### 2026-11-03 — Web3Forms + hCaptcha contact form, Google Map on contact page (late evening)
+**Done**
+- Contact form moved from FormSubmit to Web3Forms (`ContactForm.tsx`, `ContactForm.module.css`, `site.ts`):
+  - form "EMEC website enquiries" (key `c7cd14df-…`) sends to emec.servicesbd@gmail.com;
+  - dashboard settings: hCaptcha, Advanced Spam Filter on, Strict spam level;
+  - `@hcaptcha/react-hcaptcha` with Web3Forms' free shared site key;
+  - honeypot renamed to `botcheck`; the spam-word check moved into the form itself, as a word-boundary regex.
+- Verified:
+  - Web3Forms rejects posts without a captcha token ("hCaptcha Token is mandatory");
+  - Web3Forms rejects all server-side posts on the free plan (403);
+  - the form asks for the captcha if it's missing;
+  - Ayash sent a live test enquiry, and it arrived.
+- Contact page: the drawn map graphic is replaced by an embedded Google Map (`components/contact/OfficeMap.tsx`).
+  - Pinned at `site.geo` (23.756722, 90.3735), with "Get directions" and "Open in Google Maps" links.
+  - The map loads only when scrolled to (`loading="lazy"`); no API key needed.
+- JSON-LD has `geo` (GeoCoordinates) and `hasMap`; `/llms.txt` has a map link; `knowledge/company.md` records the pin.
+- `CLAUDE.md` describes the Web3Forms setup.
+- Deployed twice through cPanel and verified live. Commits `bfcafe9` and `850bf06` are pushed.
+**Decisions**
+- Web3Forms over FormSubmit: FormSubmit returned Cloudflare 522 for hours. Web3Forms offers server-enforced hCaptcha and a spam filter for free.
+- hCaptcha rather than Turnstile or reCAPTCHA: Web3Forms supplies the hCaptcha site key, so no Cloudflare or Google account is needed.
+- Strict spam level, because the client wants zero spam. Drop to Basic if a real enquiry is ever held back.
+- Pin by coordinates, not address: the address search pins SSS at House 6/1, and EMEC has no Google listing.
+**Next up**
+- [ ] Google Business Profile for EMEC (business.google.com, needs Google's verification); then point the map at the listing (new).
+- [ ] Google Search Console: add `https://www.emecbd.com/`, submit `sitemap.xml`, and run Rich Results Test (carried over).
+- [ ] Test email: send and receive one message on a company mailbox (carried over).
+- [ ] Around 2026-12-03, if the site is stable: delete `~/wp-old`, the server backup zip, and only the `…_wp495` database and its user (carried over).
+- [ ] Store the two downloaded backups somewhere safer than the Downloads folder (carried over).
+- [ ] Higher-res OCG, d.zignscape and DECL logos (carried over).
+- [ ] Replace the `Artwork` illustrations with real photos once supplied (carried over).
+- Done and dropped: FormSubmit activation (replaced by Web3Forms, tested).
+**Open questions**
+- `npm run package` only works from PowerShell or cmd (Git Bash's GNU `tar` can't write zip files). Make it portable? (carried over)
+- `info@emecbd.com`: put it back on the contact page? (carried over)
+- Logo permission from EMEC for all 30 logos, which are live (carried over).
+- 14th Bde: Army crest or Corps of Engineers insignia? (carried over)
+- Should EMEC review the cleared content calls (Ireland dropped, "Proprietor & CEO", 85+ years)? (carried over)
+- 6.6 GB `.cpanel.zip` and old backup folders in the home directory: keep or clean up? (carried over)
 
 ### 2026-11-03 — Team split, form spam defences, SEO/AI search, last 3 logos (evening)
 **Done**
