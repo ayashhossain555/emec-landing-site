@@ -2,9 +2,52 @@
 
 The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest session first.
 
-**Status:** The full site is implemented from the Claude Design project and pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). It builds as a static export (20 routes) and typecheck and lint are clean. 27 of 30 client logos are in, SVG illustrations stand in for photos, and the contact form posts to FormSubmit (needs one-time activation). Content conflicts are resolved from the source documents. It is waiting on real imagery, 3 logos, logo permission and a hosting choice.
+**Status:** **Live at https://www.emecbd.com** since 2026-11-03, as a static export on the existing HostGator account (`public_html`; no DNS changes, email untouched). The repo is pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). The build has 22 routes, and typecheck and lint are clean. 27 of 30 client logos are in, and SVG illustrations stand in for photos. The contact form posts to FormSubmit, which still needs its one-time activation. Waiting on real imagery, 3 logos and logo permission. WordPress is kept in `~/wp-old` for rollback until about 2026-12-03.
 
 ## Sessions
+
+### 2026-11-03 — Case studies, HostGator deploy, live cutover
+**Done**
+- New case studies in `src/content/projects.ts`: GIZ CONNECT (`/projects/giz-connect-baseline/`) and BRAC RISe (`/projects/brac-rise-barishal-baseline/`), from the `knowledge/` digests.
+- The existing PCKK UFD digital case study (`services.ts`) now covers the web-app phase (Feb 2026 onwards).
+- New `coast` motif in `Artwork.tsx` (mangrove shoreline), used for CONNECT so it doesn't repeat the Kewatkhali drawing.
+- Projects grid `--min` changed from 280px to 360px, so 6 cards fall into two rows of 3.
+- Main address is now `www`: `site.url` is `https://www.emecbd.com`, and `layout.tsx` gives every page a canonical tag via `alternates.canonical: "./"`.
+- New `public/.htaccess`:
+  - HTTPS, plus apex → www;
+  - 301s for `/service/`, `/projects-2/`, `/blog/` and `wp-sitemap*.xml`;
+  - 410 for the demo posts, archives and WordPress internals;
+  - custom 404, security headers and caching rules;
+  - rewrites for the Next 16 prefetch filenames (see Decisions).
+- `npm run package` (`tar --format=zip`) builds `emec-site.zip`.
+- `DEPLOY.md` is the runbook: account layout, backup, preview, cutover, rollback and post-launch. `CLAUDE.md` points to it.
+- Backups were downloaded to the local Downloads folder and verified: the `public_html` zip (162 MB, 18,195 files) and the `…_wp495` SQL dump (31 tables).
+- Preview was tested on `preview.emecbd.com` (pages, redirects, 410s, TLS, browser), and the subdomain was then removed.
+- Cutover took about 21 s: WordPress moved to `~/wp-old`, and the build went into `public_html`. The live site, redirects, 410s, TLS, DNS and mail ports were all verified afterwards.
+- Commits `7a35810`, `b4d90ac` and `0787272` are pushed to `origin/main`.
+**Decisions**
+- Static upload to HostGator, not Vercel: it needs no DNS change, cannot affect email, and rolls back in seconds.
+- Keep `www` as the main address, because that is what Google has indexed from the WordPress site.
+- The old demo posts, tag/category/author pages and WordPress internals return 410 rather than redirecting to home, since redirecting junk to home counts as a soft 404.
+- The `.htaccess` maps dot-joined prefetch names onto the folders Next writes. Next 16's export writes `__next.about/__PAGE__.txt` but the browser requests `__next.about.__PAGE__.txt`.
+- The server is LiteSpeed (it reports itself as Apache) and reads `.htaccess` correctly.
+- The other 5 subdomains, their 4 databases and the mailboxes live outside `public_html` and were left untouched.
+**Next up**
+- [ ] Test email: send and receive one message on a company mailbox (only port reachability was checked).
+- [ ] Activate FormSubmit: submit the live form once, then click the activation email to emec.servicesbd@gmail.com (carried over).
+- [ ] Google Search Console: add `https://www.emecbd.com/` and submit `sitemap.xml`.
+- [ ] Around 2026-12-03, if the site is stable: delete `~/wp-old`, the `~/public_html-wp-2026-11.zip` on the server, and only the `…_wp495` database and its user.
+- [ ] Store the two downloaded backups somewhere safer than the Downloads folder.
+- [ ] Logos still missing: DPHE, Phuentsholing Thromde, EPC (carried over).
+- [ ] Higher-res OCG, d.zignscape and DECL logos (carried over).
+- [ ] Replace the `Artwork` illustrations with real photos once supplied (carried over).
+- Done and dropped: hosting/domain choice (HostGator, `www.emecbd.com`) and the case studies from `knowledge/`.
+**Open questions**
+- `info@emecbd.com` is an active mailbox (about 10.7 MB). It was dropped from the site last session; should it go back on the contact page?
+- EMEC should confirm permission to show the 27 client logos before they are widely shared (the site is now live with them) (carried over).
+- 14th Bde: keep the general Army crest, or switch to the Corps of Engineers insignia? (carried over)
+- Should EMEC review the cleared content calls (Ireland dropped, "Proprietor & CEO", 85+ years)? (carried over)
+- The home directory holds a 6.6 GB `.cpanel.zip` and older backup folders of unknown origin. Keep or clean up?
 
 ### 2026-11-03: Placeholder artwork, contact backend, more logos, content conflicts cleared
 **Done**
