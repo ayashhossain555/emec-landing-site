@@ -2,6 +2,8 @@
 
 Everything here is taken only from the company profiles' "List of Key Professional Personnel". Contact details and other personal data are deliberately left out. None of the profiles gives anyone a job title such as CEO; the info tables name Shahzad Khan as "Proprietor" (EMEC Profile.docx) and "Contact Person" (V6). The LIC portfolio calls him a "water supply/WASH specialist" and "proposed key expert".
 
+> **Site decision (2026-11-03, from EMEC, not from the documents):** Sowmitra Das is no longer listed. Only Shahzad Khan, Salemun Bahar, Ayash Hossain Chowdhury and Shohel Dhali are permanent staff. Syed Zakir Hossein, Sudhir Kumar Sharma, Khandakar Mohammad Abdul Qayum and Abdul Baki are intermittent experts engaged per project. `/team` shows them as two separate groups.
+
 ## Years of experience by source
 
 | Name (as spelled) | V6 | Profile.docx | Profile.pdf |

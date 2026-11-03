@@ -67,3 +67,7 @@ _Source: EMEC Experience.docx; EMEC Profile.docx; EMEC_Relevant_Portfolio_LIC_Da
 - **Water & Sanitation for Urban Populations (WSUP) Bangladesh**, for Chattogram WASA: LIC Dashboard proposal portfolio dated 26 September 2026.
 
 _Source: PDS V2.docx; EMEC Experience.docx; EMEC_Relevant_Portfolio_LIC_Dashboard.pdf_
+
+## Site naming decisions
+
+- EPC appears on the site as "Engineering & Planning Consultants Ltd.", the name on EPC's own logo file (supplied 2026-11-03). The documents say "Engineering and Planning Consultants".

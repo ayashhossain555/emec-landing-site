@@ -2,9 +2,56 @@
 
 The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest session first.
 
-**Status:** **Live at https://www.emecbd.com** since 2026-11-03, as a static export on the existing HostGator account (`public_html`; no DNS changes, email untouched). The repo is pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). The build has 22 routes, and typecheck and lint are clean. 27 of 30 client logos are in, and SVG illustrations stand in for photos. The contact form posts to FormSubmit, which still needs its one-time activation. Waiting on real imagery, 3 logos and logo permission. WordPress is kept in `~/wp-old` for rollback until about 2026-12-03.
+**Status:** **Live at https://www.emecbd.com** since 2026-11-03, as a static export on the existing HostGator account (`public_html`; no DNS changes, email untouched). The repo is pushed to GitHub (`ayashhossain555/emec-landing-site`, `main`). The build has 24 routes (including `/llms.txt` and `/og.png`), and typecheck and lint are clean. **All 30 client logos are in**, and SVG illustrations stand in for photos. The site has full SEO/AI-search metadata. The contact form posts to FormSubmit, which is **not yet activated** (FormSubmit was down, error 522). Waiting on real imagery and logo permission. WordPress is kept in `~/wp-old` for rollback until about 2026-12-03.
 
 ## Sessions
+
+### 2026-11-03 — Team split, form spam defences, SEO/AI search, last 3 logos (evening)
+**Done**
+- Team (`people.ts`, `types.ts`, `team/page.tsx`):
+  - Sowmitra Das removed.
+  - New `intermittent` flag on `TeamMember`; `/team` now has a "Core team" section (Shahzad, Salemun, Ayash, Shohel) and an "Intermittent experts" section (Zakir Hossein, Sudhir Sharma, Qayum, Abdul Baki).
+  - Card `--min` changed from 290px to 270px so both sections show 4 across on desktop.
+- `ContactForm.tsx` spam defences, all silent (a bot sees a fake "sent"):
+  - honeypot `_honey`, also forwarded to FormSubmit;
+  - 4 s minimum fill time;
+  - at most 2 links per message;
+  - length caps on every field;
+  - FormSubmit `_blacklist` of common spam phrases.
+- SEO (`src/lib/seo.ts`, `components/JsonLd.tsx`):
+  - `pageMetadata()` on every page gives complete OG/Twitter tags.
+  - 1200x630 share card at `/og.png` (`app/og.png/route.tsx`).
+  - JSON-LD: ProfessionalService + WebSite site-wide, Article + BreadcrumbList on case studies, Person list on `/team`.
+  - Sitemap has `lastModified` and priorities; meta descriptions end at a word boundary.
+- AI search:
+  - `/llms.txt` (`app/llms.txt/route.ts`), generated from `src/content/`;
+  - `robots.ts` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and others.
+- `.htaccess` serves text files as UTF-8. `CLAUDE.md` describes the SEO setup and the contact form.
+- Logos for DPHE, EPC and Phuentsholing Thromde added (`public/clients/`, cropped and scaled to 240px tall). That makes all 30. EPC is now named "Engineering & Planning Consultants Ltd.", as on its logo.
+- `knowledge/team.md` and `knowledge/clients.md` note the team and EPC decisions.
+- Deployed twice through the cPanel Fileman API (upload, extract over `public_html`, zip to Trash). Verified live: pages, redirects, 410s, `llms.txt`, `og.png`, the 30 logos.
+- Commits `35c872b` and `8ea4338` are pushed to `origin/main`.
+**Decisions**
+- Team split comes from EMEC: intermittent experts are not permanent staff. In JSON-LD they are `affiliation`, not `worksFor`.
+- The share image is a route at `/og.png`, not the `opengraph-image` file convention, because that convention exports with no extension and Apache would send the wrong Content-Type.
+- No FormSubmit CAPTCHA: it only works for non-AJAX posts. The silent checks and `_blacklist` cover AJAX instead.
+- Redeploy by extracting over `public_html` (allowed by the runbook when no files are removed) rather than doing a folder swap.
+**Next up**
+- [ ] Activate FormSubmit once it's back up (it returned 522 all session): submit the live form once, then click the activation email to emec.servicesbd@gmail.com. If it stays down, switch to another form service (carried over).
+- [ ] Google Search Console: add `https://www.emecbd.com/`, submit `sitemap.xml`, and run Rich Results Test on a case study (carried over).
+- [ ] Test email: send and receive one message on a company mailbox (carried over).
+- [ ] Around 2026-12-03, if the site is stable: delete `~/wp-old`, the server backup zip, and only the `…_wp495` database and its user (carried over).
+- [ ] Store the two downloaded backups somewhere safer than the Downloads folder (carried over).
+- [ ] Higher-res OCG, d.zignscape and DECL logos (carried over).
+- [ ] Replace the `Artwork` illustrations with real photos once supplied (carried over).
+- Done and dropped: the missing DPHE, Phuentsholing Thromde and EPC logos.
+**Open questions**
+- `npm run package` only works from PowerShell or cmd: Git Bash's GNU `tar` can't write zip files. Make the script portable?
+- `info@emecbd.com`: put it back on the contact page? (carried over)
+- Logo permission from EMEC for all 30 logos, which are live (carried over).
+- 14th Bde: Army crest or Corps of Engineers insignia? (carried over)
+- Should EMEC review the cleared content calls (Ireland dropped, "Proprietor & CEO", 85+ years)? (carried over)
+- 6.6 GB `.cpanel.zip` and old backup folders in the home directory: keep or clean up? (carried over)
 
 ### 2026-11-03 — Case studies, HostGator deploy, live cutover
 **Done**
