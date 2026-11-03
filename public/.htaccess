@@ -31,6 +31,17 @@ ErrorDocument 404 /404.html
   RewriteRule ^(category|tag|author|feed|comments)(/|$) - [G,L]
   RewriteRule ^(wp-admin|wp-content|wp-includes|wp-json)(/|$) - [G,L]
   RewriteRule ^(wp-login|xmlrpc|wp-cron|wp-signup|wp-trackback)\.php$ - [G,L]
+
+  # --- Next.js 16 static export: prefetch segment files ---
+  # The client requests dot-joined names (about/__next.about.__PAGE__.txt,
+  # projects/x/__next.projects.$d$slug.__PAGE__.txt) but the export writes them
+  # as folders (__next.about/__PAGE__.txt). Map one onto the other, up to 3 levels.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*/)?__next\.([^/.]+)\.([^/.]+)\.([^/.]+)\.__PAGE__\.txt$ /$1__next.$2/$3/$4/__PAGE__.txt [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*/)?__next\.([^/.]+)\.([^/.]+)\.__PAGE__\.txt$ /$1__next.$2/$3/__PAGE__.txt [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*/)?__next\.([^/.]+)\.__PAGE__\.txt$ /$1__next.$2/__PAGE__.txt [L]
 </IfModule>
 
 <IfModule mod_headers.c>
