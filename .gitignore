@@ -8,3 +8,6 @@ next-env.d.ts
 
 # Raw source documents (CVs, timesheets, client reports) — never commit; use knowledge/ digests instead
 knowledge/sources/
+
+# Upload bundle built by `npm run package`
+emec-site.zip

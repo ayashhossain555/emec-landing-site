@@ -1,7 +1,7 @@
 export const site = {
   name: "EMEC",
   fullName: "Environmental Management & Engineering Consultant",
-  url: "https://emecbd.com",
+  url: "https://www.emecbd.com",
   founded: 2018,
   city: "Dhaka",
   description:

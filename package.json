@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve out",
+    "package": "next build && tar -a -c -f emec-site.zip -C out .",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },

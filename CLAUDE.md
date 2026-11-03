@@ -12,6 +12,7 @@ Marketing site for **EMEC** (Environmental Management & Engineering Consultant, 
 npm run dev         # dev server on http://localhost:3000
 npm run build       # static export to ./out (also runs the TS check)
 npm run start       # serve ./out locally (npx serve)
+npm run package     # build + zip out/ to emec-site.zip for upload (see DEPLOY.md)
 npm run lint        # eslint (flat config, next core-web-vitals + typescript)
 npm run typecheck   # tsc --noEmit
 ```
@@ -26,6 +27,7 @@ There is no test suite. Verify with `typecheck` + `lint` + `build`, then look at
   - `/digital/[slug]` comes from `digitalCaseStudies` in `services.ts`.
 
   Both render the shared `components/CaseStudyView.tsx`. New slugs need no routing changes.
+- **Hosting:** HostGator shared hosting (Apache), static files in `public_html`, canonical host `www.emecbd.com`. Redirects and 410s for old WordPress URLs live in `public/.htaccess`. Runbook: `DEPLOY.md`.
 - **Static export constraints** (`next.config.ts`: `output: "export"`, `trailingSlash`, unoptimized images). There are no server actions, route handlers, middleware or runtime `next/image` optimisation. Metadata routes (`sitemap.ts`, `robots.ts`) need `export const dynamic = "force-static"`.
 - **Client components are kept minimal:**
   - `SiteHeader` uses the active route and the mobile menu.

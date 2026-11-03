@@ -1,0 +1,52 @@
+# EMEC static site on HostGator (Apache). Next copies this file into out/.
+# Canonical host is https://www.emecbd.com (see site.url in src/content/site.ts).
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Let AutoSSL / Let's Encrypt domain validation through untouched.
+  RewriteRule ^\.well-known/ - [L]
+
+  # Force HTTPS on every host (www, apex and any preview subdomain).
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Apex -> www. Only the bare domain, so a preview subdomain stays put.
+  RewriteCond %{HTTP_HOST} ^emecbd\.com$ [NC]
+  RewriteRule ^ https://www.emecbd.com%{REQUEST_URI} [R=301,L]
+
+  # --- Old WordPress URLs: pages that moved ---
+  RewriteRule ^service/?$ /services/ [R=301,L]
+  RewriteRule ^projects-2/?$ /projects/ [R=301,L]
+  RewriteRule ^blog/?$ / [R=301,L]
+  RewriteRule ^wp-sitemap[^/]*\.xml$ /sitemap.xml [R=301,L]
+
+  # --- Old WordPress URLs: gone for good (theme demo posts, archives, WP internals) ---
+  RewriteRule ^20[0-9]{2}/ - [G,L]
+  RewriteRule ^(category|tag|author|feed|comments)(/|$) - [G,L]
+  RewriteRule ^(wp-admin|wp-content|wp-includes|wp-json)(/|$) - [G,L]
+  RewriteRule ^(wp-login|xmlrpc|wp-cron|wp-signup|wp-trackback)\.php$ - [G,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Hashed build assets never change; HTML must always revalidate.
+  <FilesMatch "\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|txt|xml)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json image/svg+xml
+</IfModule>
