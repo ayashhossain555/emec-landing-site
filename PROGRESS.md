@@ -20,7 +20,7 @@ The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest s
 - Added the `/catchup` and `/wrap` skills, `CLAUDE.md` and `README.md`.
 - Phone-width check (390px): no page scrolls sideways, including the case studies and the 404. The project explorer switches to stacked rows, and the mobile menu opens, closes on navigation and has 53px tap targets.
 - Fixed the globe labels: Bhutan and India now draw to the left of their pins, so they no longer cover the Bangladesh/HQ label. The design had the same overlap.
-- Committed on branch `feat/site-from-design`.
+- Committed on branch `feat/site-from-design` and fast-forward merged into `main`.
 
 **Decisions**
 - Next.js static export, because a marketing site needs no backend and can deploy to any static host.
@@ -29,7 +29,6 @@ The `/wrap` skill maintains this log and the `/catchup` skill reads it. Newest s
 - The site keeps the design's copy verbatim. Discrepancies are flagged below rather than silently "fixed".
 
 **Next up**
-- [ ] Review the `feat/site-from-design` branch and merge it into `main`
 - [ ] Resolve the open content questions below with EMEC, then update `src/content/*`
 - [ ] Replace the `.placeholder` blocks with real photos (hero/field, project sites, team portraits, map embed)
 - [ ] Add approved client logo files to `public/clients/` and set `logo` in `people.ts`
