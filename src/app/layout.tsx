@@ -28,7 +28,8 @@ export const viewport: Viewport = { themeColor: "#17302b" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${barlow.variable} ${publicSans.variable} ${jetbrains.variable}`}>
-      <body>
+      {/* Extensions (e.g. ColorZilla's cz-shortcut-listen) add attributes to <body> before hydration. */}
+      <body suppressHydrationWarning>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
